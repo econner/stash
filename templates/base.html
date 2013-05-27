@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Trail</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script src="{{ url_for('static', filename='js/registration.js') }}"></script>
+</head>
+<body>
+	<header>
+		<h1>Trail</h1>
+	</header>
+	<div>
+		<b>The best way to find clothes you like.</b><br/>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				registration = new T.RegistrationForm({
+					'registration_form': '#registration_form'
+				})
+			})
+		</script>
+		{% if not g.user.is_authenticated() %}
+		<form id="registration_form" method="POST" action="/register">
+			<input type="text" id="register[email]" name="email" placeholder="Email" data-validation-name="email" /><span class="status"></span><br/>
+			<input type="text" id="register[username]" name="username" placeholder="Username" data-validation-name="username" /><span class="status"></span><br/>
+			<input type="password" id="register[password]" name="password" placeholder="Password" data-validation-name="password" /><span class="status"></span><br/>
+			<input type="submit" value="Find Stuff to Wear" />
+		</form>
+
+		<form id="login_form" method="POST" action="/login">
+			<input type="text" name="username_or_email" placeholder="Username or Email" /><span class="status"></span><br/>
+			<input type="password" name="password" placeholder="Password" /><span class="status"></span><br/>
+			<input type="submit" value="Login" />
+		</form>
+		{% else %}
+		<p>Logged in as {{ g.user.username }}.
+		{% endif %}
+	</div>
+</body>
+</html>

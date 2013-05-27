@@ -1,0 +1,5 @@
+argument_missing = "Required argument is missing."
+value_too_short = "Too short."
+username_taken = "Username is taken."
+email_invalid = "Email is invalid."
+email_taken = "Email is taken."
